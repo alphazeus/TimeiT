@@ -17,6 +17,7 @@ content = ci.createContent(fonts)
 
 sc.playShortBeep()
 dpg.show_viewport()
+
 # dpg.start_dearpygui()
 ci.renderloop(content)
 
