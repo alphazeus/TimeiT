@@ -12,14 +12,14 @@ fonts = fc.initFont()
 dpg.create_viewport(title='TimeiT', width=600, height=200)
 dpg.setup_dearpygui()
 
-content = ci.createContent(fonts)
+ci.createContent(fonts)
 
 
 sc.playShortBeep()
 dpg.show_viewport()
 
 # dpg.start_dearpygui()
-ci.renderloop(content)
+ci.renderloop()
 
 
 dpg.destroy_context()

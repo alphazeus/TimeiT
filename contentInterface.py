@@ -10,22 +10,22 @@ def on_tab_change(sender, app_data, user_data):
     elif app_data == "tab_timer":
         state = "timer_selected"
 
+
+
 def createContent(fonts):
-    ui = {}
     with dpg.window(label="TimeiT", tag="main_window", no_title_bar=True, width=dpg.get_viewport_client_width(), height=dpg.get_viewport_client_height()):
         with dpg.tab_bar(callback = on_tab_change):
             with dpg.tab(label="Clock", tag = "tab_clock"):
-                ui["clock"] = dpg.add_text(datetime.now().strftime("%H:%M:%S"))
-                dpg.bind_item_font(ui["clock"], fonts["clock"])
+                dpg.add_text(datetime.now().strftime("%H:%M:%S"), tag="clock")
+                dpg.bind_item_font("clock", fonts["clock"])
             with dpg.tab(label="Timer", tag = "tab_timer"):
                 dpg.add_text("00:00", tag="timer_display")
                 dpg.add_button(label="Start")
-    return ui
 
 
-def renderloop(ui):
+def renderloop():
     while dpg.is_dearpygui_running():
         dpg.render_dearpygui_frame()
         if state == "clock_selected":
-            dpg.set_value(ui["clock"], datetime.now().strftime("%H:%M:%S"))
+            dpg.set_value("clock", datetime.now().strftime("%H:%M:%S"))
         
