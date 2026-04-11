@@ -7,12 +7,12 @@ import contentInterface as ci
 
 dpg.create_context()
 
-fonts = fc.initFont()
+fc.initFont()
 
 dpg.create_viewport(title='TimeiT', width=600, height=200)
 dpg.setup_dearpygui()
 
-ci.createContent(fonts)
+ci.createContent()
 
 
 sc.playShortBeep()
