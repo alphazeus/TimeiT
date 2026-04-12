@@ -15,24 +15,24 @@ def on_tab_change(sender, app_data, user_data):
         dpg.configure_item("timer_window", show=True)
 
 def createClockContent():
-    dpg.add_text(datetime.now().strftime("%H:%M:%S"), tag="clock")
-    dpg.bind_item_font("clock", "font_clock")
+    with dpg.window(label="Clock", tag="clock_window", no_title_bar=True, pos= [dpg.get_viewport_width()/5,0], width=(dpg.get_viewport_width()*4)/5, height=dpg.get_viewport_height()):
+        dpg.add_text(datetime.now().strftime("%H:%M:%S"), tag="clock")
+        dpg.bind_item_font("clock", "font_clock")
 
 def createTimerContent():
-    dpg.add_text("00:00", tag="timer_display")
-    dpg.add_button(label="Start")
+    with dpg.window(label="Timer", tag="timer_window", no_title_bar=True, pos= [dpg.get_viewport_width()/5,0], width=(dpg.get_viewport_width()*4)/5, height=dpg.get_viewport_height(), show=False):
+        dpg.add_text("00:00", tag="timer_display")
+        dpg.add_button(label="Start")
 
 def createFunctionContent():
-    dpg.add_button(label="Clock", tag="clock_button", callback=on_tab_change)
-    dpg.add_button(label="Timer", tag="timer_button", callback=on_tab_change)
+    with dpg.window(label="Function", tag="function_window", no_title_bar=True, width=dpg.get_viewport_width()/5, height=dpg.get_viewport_height()):
+        dpg.add_button(label="Clock", tag="clock_button", callback=on_tab_change)
+        dpg.add_button(label="Timer", tag="timer_button", callback=on_tab_change)
 
 def createContent():
-    with dpg.window(label="Function", tag="function_window", no_title_bar=True, width=dpg.get_viewport_client_width()/5, height=dpg.get_viewport_client_height()):
-        createFunctionContent()
-    with dpg.window(label="Clock", tag="clock_window", no_title_bar=True, pos= [dpg.get_viewport_client_width()/5,0], width=dpg.get_viewport_client_width(), height=dpg.get_viewport_client_height()):
-        createClockContent()
-    with dpg.window(label="Timer", tag="timer_window", no_title_bar=True, pos= [dpg.get_viewport_client_width()/5,0], width=dpg.get_viewport_client_width(), height=dpg.get_viewport_client_height(), show=False):
-        createTimerContent()
+    createFunctionContent()
+    createClockContent()
+    createTimerContent()
 
 
 def renderloop():
