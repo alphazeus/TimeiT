@@ -5,11 +5,15 @@ import time
 import fontControl as fc
 import contentInterface as ci
 
+WINDOW_WIDTH    =   800
+WINDOW_HEIGHT   =   300
+
 dpg.create_context()
 
 fc.initFont()
+ci.initTheme()
 
-dpg.create_viewport(title='TimeiT', width=800, height=200)
+dpg.create_viewport(title='TimeiT', width=WINDOW_WIDTH, height=WINDOW_HEIGHT, decorated=False)
 dpg.setup_dearpygui()
 
 ci.createContent()
