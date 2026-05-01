@@ -1,4 +1,3 @@
-
 import dearpygui.dearpygui as dpg
 import soundControl as sc
 import time
@@ -6,7 +5,7 @@ import fontControl as fc
 import contentInterface as ci
 
 WINDOW_WIDTH    =   800
-WINDOW_HEIGHT   =   300
+WINDOW_HEIGHT   =   800
 
 dpg.create_context()
 
