@@ -1,5 +1,6 @@
 # contentInterface.py
 import dearpygui.dearpygui as dpg
+import timer_api
 from datetime import datetime
 
 tab_state = "clock_selected"
@@ -65,6 +66,7 @@ def on_tab_change(sender, app_data, user_data):
         dpg.configure_item("clock_window", show=False)
         dpg.configure_item("timer_window", show=True)
     elif sender == "pomo_button":
+        tab_state = "pomo_selected"
         dpg.configure_item("clock_window", show=False)
         dpg.configure_item("timer_window", show=False)
 
@@ -92,10 +94,7 @@ def createClockContent():
     dpg.bind_item_theme("clock_window", "theme_tight_window")
 
 def createTimerContent():
-    with dpg.window(label="Timer", tag="timer_window", no_title_bar=True, pos=[RIGHT_X, CONTENT_Y], width=RIGHT_W, height=CONTENT_H, show=False):
-        dpg.add_text("00:00", tag="timer_display")
-        dpg.add_button(label="Start")
-    dpg.bind_item_theme("timer_window", "theme_tight_window")
+    timer_api.initTimerContent(RIGHT_X, CONTENT_Y, RIGHT_W, CONTENT_H)
 
 def createFunctionContent():
     with dpg.window(label="Function", tag="function_window", no_title_bar=True, pos=[0, CONTENT_Y], width=LEFT_W, height=CONTENT_H):
@@ -122,4 +121,6 @@ def renderloop():
         if tab_state == "clock_selected":
             dpg.set_value("clock", datetime.now().strftime("%H:%M:%S"))
         elif tab_state == "timer_selected":
-            print("timer_selected")
+            timer_api.updateTimerContent()
+        elif tab_state == "pomo_selected":
+            print("Test Pomo")
